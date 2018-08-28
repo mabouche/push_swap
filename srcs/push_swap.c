@@ -47,13 +47,11 @@ void			init_pile_a_follow(int ac, char **av, int i, t_elem **start)
 				j++;
 			}
 			free(dest);
-			i++;
+			j = 0;
 		}
 		else
-		{
 			*start = append_elem(*start, ft_atoi_int_max(av[i]));
-			i++;
-		}
+		i++;
 	}
 }
 

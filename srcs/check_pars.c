@@ -51,7 +51,6 @@ int				check_err_arg(int ac, char **av)
 				return (1);
 			free_arg(dest, j);
 			j = 0;
-			i++;
 		}
 		else
 		{
