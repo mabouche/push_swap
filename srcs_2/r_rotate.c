@@ -31,7 +31,6 @@ void	r_rotate_a_do(t_pile *a, t_pile *b)
 void	r_rotate_a(t_pile *a, t_pile *b)
 {
 	r_rotate_a_do(a, b);
-	ft_printf("rra\n");
 	a->coups++;
 }
 
@@ -54,7 +53,6 @@ void	r_rotate_b_do(t_pile *a, t_pile *b)
 void	r_rotate_b(t_pile *a, t_pile *b)
 {
 	r_rotate_b_do(a, b);
-	ft_printf("rrb\n");
 	a->coups++;
 }
 
@@ -65,5 +63,4 @@ void	r_rotate_rr(t_pile *a, t_pile *b)
 		return ;
 	r_rotate_a_do(a, b);
 	r_rotate_b_do(a, b);
-	ft_printf("rrr\n");
 }

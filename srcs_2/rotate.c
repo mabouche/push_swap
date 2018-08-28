@@ -16,7 +16,7 @@ void	rotate_a(t_pile *a, t_pile *b)
 {
 	t_elem *new;
 
-	if ((!a->first || !a->first->next) && a->first != a->last)
+	if ((!a->first || !a->first->next))
 		return ;
 	new = a->first;
 	a->first = a->first->next;
@@ -24,7 +24,6 @@ void	rotate_a(t_pile *a, t_pile *b)
 	a->last->next = new;
 	a->last = new;
 	(void)b;
-	ft_printf("ra\n");
 	a->coups++;
 }
 
@@ -32,7 +31,7 @@ void	rotate_b(t_pile *a, t_pile *b)
 {
 	t_elem *new;
 
-	if ((!b->first || !b->first->next) && b->first != b->last)
+	if ((!b->first || !b->first->next))
 		return ;
 	new = b->first;
 	b->first = b->first->next;
@@ -40,7 +39,6 @@ void	rotate_b(t_pile *a, t_pile *b)
 	b->last->next = new;
 	b->last = new;
 	(void)a;
-	ft_printf("rb\n");
 	a->coups++;
 }
 
@@ -48,8 +46,8 @@ void	rotate_rr(t_pile *a, t_pile *b)
 {
 	t_elem *new;
 
-	if (((!b->first || !b->first->next) && b->first != b->last) ||
-	((!a->first || !a->first->next) && b->first != b->last))
+	if ((!b->first || !b->first->next) ||
+	(!a->first || !a->first->next))
 		return ;
 	new = a->first;
 	a->first = a->first->next;
@@ -61,6 +59,5 @@ void	rotate_rr(t_pile *a, t_pile *b)
 	new->next = NULL;
 	b->last->next = new;
 	b->last = new;
-	ft_printf("rr\n");
 	a->coups++;
 }

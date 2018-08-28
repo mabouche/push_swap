@@ -26,7 +26,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	source_len = ft_strlen(s);
 	if (source_len < start)
 		return (NULL);
-	dest = (char *)malloc(sizeof(char) * len + 1);
+	dest = (char *)ft_memalloc(sizeof(char) * len + 1);
 	if (!dest)
 		return (NULL);
 	while (s[index] && index < (len + start))

@@ -11,21 +11,24 @@
 # **************************************************************************** #
 
 # Compilation
-CC =		clang
-CFLAGS =	#-Wall -Wextra -Werror
-ADDFLAGS =
+CC =		gcc
+CFLAGS =	-Wall -Wextra -Werror
+ADDFLAGS = 	#-fsanitize=address
 
 # Default rule
 DEFRULE =	all
 
 # Binary
 NAME =		push_swap
+NAME_2 = 	checker
 DST =
 
 # Directories
 SRCDIR =	srcs
+SRCDIR_2 =	srcs_2
 OBJDIR =	objs
-INCDIR =	libft/
+OBJDIR_2 =	objs_2
+INCDIR =	inc/
 
 # Sources
 SRC = \
@@ -34,9 +37,31 @@ SRC = \
 			r_rotate.c\
 			swap.c\
 			push.c\
-			#quicksort.c\
+			find_med.c\
+			tri_three.c\
+			tri_five.c\
+			tri_five_2.c\
+			insertion_sort.c\
+			insertion_sort_2.c\
+			quicksort.c\
+			util.c\
+			ope_list.c\
+			sorts.c\
+			check_pars.c\
+
+SRC_2 = \
+			checker.c\
+			checker_2.c\
+			push.c\
+			r_rotate.c\
+			rotate.c\
+			swap.c\
+			util.c\
+			ope_list.c\
+			check_pars.c\
 
 OBJ =		$(SRC:.c=.o)
+OBJ_2 = 	$(SRC_2:.c=.o)
 
 # Prefixes
 LIBFT =		-Llibft/ -lft
@@ -45,6 +70,7 @@ LIBFT =		-Llibft/ -lft
 # Paths foreach
 LIBP =		$(addprefix -L, $(LIBNAME)/)
 OBJP =		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+OBJP_2 =		$(addprefix $(OBJDIR_2)/, $(SRC_2:.c=.o))
 INCP =		$(foreach dir, $(INCDIR), -I$(dir))
 
 # **************************************************************************** #
@@ -74,7 +100,7 @@ default:
 	@make $(DEFRULE)
 	@echo -e "$(LOG_BOLD)Execution finished     $(LOG_NOCOLOR)ヽ(ヅ)ノ"
 
-all: libftcomp $(OBJDIR) $(NAME)
+all: libftcomp $(OBJDIR) $(NAME) $(OBJDIR_2) $(NAME_2)
 
 re: fclean all
 
@@ -95,13 +121,29 @@ $(NAME): $(OBJP)
 	@$(CC) $(CFLAGS) $(ADDFLAGS) -o $@ $^ $(INCP) $(LIBFT)
 	@echo -e "--$(LOG_CLEAR)$(LOG_VIOLET)$(NAME)$(LOG_NOCOLOR) compiled........... $(LOG_GREEN)✓$(LOG_NOCOLOR)"
 
-# MrProper's legacy
+$(OBJDIR_2)/%.o: $(SRCDIR_2)/%.c
+	@echo -e "--$(LOG_CLEAR)$(LOG_VIOLET)$(NAME_2)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
+	@$(CC) $(CFLAGS) $(ADDFLAGS) -c -o $@ $^ $(INCP)
+
+$(OBJDIR_2):
+	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)build $(NAME_2)$(LOG_NOCOLOR)"
+	@mkdir -p $(OBJDIR_2)
+
+$(NAME_2): $(OBJP_2)
+	@echo -e "--$(LOG_CLEAR)$(LOG_VIOLET)$(NAME_2)$(LOG_NOCOLOR)....................... $(LOG_YELLOW)assembling$(LOG_NOCOLOR)$(LOG_UP)"
+	@$(CC) $(CFLAGS) $(ADDFLAGS) -o $@ $^ $(INCP) $(LIBFT)
+	@echo -e "--$(LOG_CLEAR)$(LOG_VIOLET)$(NAME_2)$(LOG_NOCOLOR) compiled........... $(LOG_GREEN)✓$(LOG_NOCOLOR)"
+
+
 .PHONY: fclean clean glu
 
 clean:
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean $(NAME)$(LOG_NOCOLOR)"
+	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean $(NAME_2)$(LOG_NOCOLOR)"
 	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deletion............. $(LOG_RED)×$(LOG_NOCOLOR)"
 	@rm -rf $(OBJDIR)
+	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deletion............. $(LOG_RED)×$(LOG_NOCOLOR)"
+	@rm -rf $(OBJDIR_2)
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean libft$(LOG_NOCOLOR)"
 	@make clean -C libft/
 
@@ -109,9 +151,12 @@ fclean:
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)fclean libft$(LOG_NOCOLOR)"
 	@make fclean -C libft/
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)fclean $(NAME)$(LOG_NOCOLOR)"
+	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)fclean $(NAME_2)$(LOG_NOCOLOR)"
 	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deletion............. $(LOG_RED)×$(LOG_NOCOLOR)"
 	@rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR_2)
 	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion.............. $(LOG_RED)×$(LOG_NOCOLOR)"
 	@rm -f $(NAME)
+	@rm -f $(NAME_2)
 
 glu: re clean

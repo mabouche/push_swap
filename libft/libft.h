@@ -100,4 +100,6 @@ void				*ft_memjoin(void const *s1, void const *s2,\
 char				*ft_itoa_base(long long value, int base);
 char				*ft_utoa_base(unsigned long long value, int base);
 char				*ft_strndup(const char *s, size_t n);
+int					get_next_line(int fd, char **line);
+int					ft_printf(const char *format, ...);
 #endif

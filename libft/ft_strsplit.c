@@ -29,11 +29,11 @@ char			**ft_strsplit(char const *s, char c)
 	unsigned int	count;
 	char			**dest;
 
+	i = 0;
+	count = 0;
 	dest = NULL;
 	if ((dest = init(s, dest)) == NULL)
 		return (NULL);
-	i = 0;
-	count = 0;
 	while (s[i])
 	{
 		if (s[i] == c)

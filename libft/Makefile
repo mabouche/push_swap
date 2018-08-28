@@ -81,6 +81,19 @@ SRC_NAME =	ft_isdigit.c \
 			ft_strmjoin.c \
 			ft_utoa_base.c \
 			ft_strndup.c \
+			get_next_line.c \
+			ft_printf.c \
+			arg.c \
+			int_arg2.c \
+			int_arg1.c \
+			int_arg_conv_unum.c \
+			p_arg.c \
+			prct_c_arg.c \
+			s_arg.c \
+			sarg2.c \
+			search.c \
+			search2.c \
+			unicode_num.c
 
 OBJECTS = $(SRC_NAME:.c=.o)
 

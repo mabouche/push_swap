@@ -22,7 +22,6 @@ void	swap_a(t_pile *a, t_pile *b)
 	a->first->value = a->first->next->value;
 	a->first->next->value = tmp;
 	(void)b;
-	ft_printf("sa\n");
 	a->coups++;
 }
 
@@ -36,7 +35,6 @@ void	swap_b(t_pile *a, t_pile *b)
 	b->first->value = b->first->next->value;
 	b->first->next->value = tmp;
 	(void)a;
-	ft_printf("sb\n");
 	a->coups++;
 }
 
@@ -52,6 +50,5 @@ void	swap_ss(t_pile *a, t_pile *b)
 	tmp = b->first->value;
 	b->first->value = b->first->next->value;
 	b->first->next->value = tmp;
-	ft_printf("ss\n");
 	a->coups++;
 }

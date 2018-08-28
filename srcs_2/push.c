@@ -36,7 +36,6 @@ void	push_a(t_pile *a, t_pile *b)
 			new->next = a->first;
 			a->first = new;
 		}
-		ft_printf("pa\n");
 		a->coups++;
 	}
 }
@@ -60,7 +59,6 @@ void	push_b(t_pile *a, t_pile *b)
 			new->next = b->first;
 			b->first = new;
 		}
-		ft_printf("pb\n");
 		a->coups++;
 	}
 }

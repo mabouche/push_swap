@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabouche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/19 13:57:19 by mabouche          #+#    #+#             */
-/*   Updated: 2018/07/20 16:15:29 by mabouche         ###   ########.fr       */
+/*   Created: 2018/07/12 17:44:17 by mabouche          #+#    #+#             */
+/*   Updated: 2018/07/21 11:47:38 by mabouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int				main(int ac, char **av)
 	t_pile *pile_a;
 	t_pile *pile_b;
 
-	if (check_err_arg(ac, av) || ac <= 1)
+	if (check_err_arg(ac, av))
 	{
 		ft_putendl_fd("Error", 2);
 		return (0);
@@ -114,13 +114,15 @@ int				main(int ac, char **av)
 		start_a = init_pile_a(ac, av);
 	pile_a = init(start_a);
 	pile_b = init_pile_b();
-	check_tri(pile_a, pile_b);
-	if (pile_a && (pile_a->count == 2 || pile_a->count == 1 ||
-	pile_a->count == 3 || pile_a->count == 5))
-		baby_sort(pile_a, pile_b);
-	else if (pile_a && pile_a->count < 70)
-		short_sort(pile_a, pile_b);
+	create_tab(pile_a, pile_b, pile_a->count);
+	if (checker(pile_a, pile_b))
+		ft_putendl_fd("Error", 2);
 	else
-		big_sort(pile_a, pile_b);
+	{
+		if (!(order_checker(pile_a)))
+			ft_printf("KO\n");
+		else
+			ft_printf("OK\n");
+	}
 	deconstruct(pile_a, pile_b);
 }
