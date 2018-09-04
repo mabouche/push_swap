@@ -103,7 +103,7 @@ int				main(int ac, char **av)
 	t_pile *pile_a;
 	t_pile *pile_b;
 
-	if (check_err_arg(ac, av))
+	if (check_err_arg(ac, av) || ac == 1)
 	{
 		ft_putendl_fd("Error", 2);
 		return (0);

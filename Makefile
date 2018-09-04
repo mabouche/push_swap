@@ -96,9 +96,9 @@ LOG_WHITE		= \033[1;37m
 
 # Main rules
 default:
-	@echo -e "$(LOG_BOLD)Default execution: rule $(DEFRULE)$(LOG_NOCOLOR)"
+	@echo "$(LOG_BOLD)Default execution: rule $(DEFRULE)$(LOG_NOCOLOR)"
 	@make $(DEFRULE)
-	@echo -e "$(LOG_BOLD)Execution finished     $(LOG_NOCOLOR)ヽ(ヅ)ノ"
+	@echo "$(LOG_BOLD) $(LOG_GREEN)Execution finished$(LOG_NOCOLOR)"
 
 all: libftcomp $(OBJDIR) $(NAME) $(OBJDIR_2) $(NAME_2)
 
